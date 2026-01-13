@@ -3,8 +3,10 @@
 namespace Adithwidhiantara\Audit\Traits;
 
 use Adithwidhiantara\Audit\Dtos\DataDto;
+use Adithwidhiantara\Audit\Models\Audit;
 use Adithwidhiantara\Audit\Services\AuditLogger;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
@@ -57,5 +59,12 @@ trait Auditable
         ))->toArray();
 
         AuditLogger::push($data);
+    }
+
+    public function audits(): MorphToMany
+    {
+        return $this
+            ->morphMany(Audit::class, 'auditable')
+            ->orderBy('created_at', 'desc');
     }
 }
