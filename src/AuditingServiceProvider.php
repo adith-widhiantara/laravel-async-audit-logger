@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Adithwidhiantara\Audit;
 
+use Adithwidhiantara\Audit\Console\Commands\AuditPruneCommand;
 use Adithwidhiantara\Audit\Console\Commands\AuditRecoverCommand;
 use Adithwidhiantara\Audit\Console\Commands\AuditWorkerCommand;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,7 @@ class AuditingServiceProvider extends ServiceProvider
             $this->commands([
                 AuditWorkerCommand::class,
                 AuditRecoverCommand::class,
+                AuditPruneCommand::class
             ]);
 
             $this->loadMigrationsFrom(__DIR__ . '/Database/Migrations');
