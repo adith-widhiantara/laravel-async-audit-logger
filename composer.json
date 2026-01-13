@@ -1,0 +1,27 @@
+{
+    "name": "adithwidhiantara/laravel-async-audit-logger",
+    "description": "High performance async audit logger",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Adithwidhiantara\\Audit\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adith Widhiantara",
+            "email": "adityaswidhiantara@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Adithwidhiantara\\Audit\\AuditingServiceProvider"
+            ]
+        }
+    }
+}
