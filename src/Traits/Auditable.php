@@ -5,8 +5,8 @@ namespace Adithwidhiantara\Audit\Traits;
 use Adithwidhiantara\Audit\Dtos\DataDto;
 use Adithwidhiantara\Audit\Services\AuditLogger;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
 trait Auditable
