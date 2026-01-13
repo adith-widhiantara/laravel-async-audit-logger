@@ -14,23 +14,23 @@ class AuditingServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/audit.php', 'audit'
+            __DIR__.'/../config/audit.php', 'audit'
         );
     }
 
     public function boot(): void
     {
-        if($this->app->runningInConsole()){
+        if ($this->app->runningInConsole()) {
             $this->commands([
                 AuditWorkerCommand::class,
                 AuditRecoverCommand::class,
-                AuditPruneCommand::class
+                AuditPruneCommand::class,
             ]);
 
-            $this->loadMigrationsFrom(__DIR__ . '/Database/Migrations');
+            $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
 
             $this->publishes([
-                __DIR__ . '/../config/audit.php' => config_path('audit.php'),
+                __DIR__.'/../config/audit.php' => config_path('audit.php'),
             ], 'audit-config');
         }
     }

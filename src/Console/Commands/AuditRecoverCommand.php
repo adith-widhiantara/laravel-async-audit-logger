@@ -9,6 +9,7 @@ use Throwable;
 class AuditRecoverCommand extends Command
 {
     protected $signature = 'audit:recover';
+
     protected $description = 'Recover failed audit logs from disk storage';
 
     public function handle(): int
@@ -17,11 +18,12 @@ class AuditRecoverCommand extends Command
         $files = glob($pattern);
 
         if (empty($files)) {
-            $this->info("No rescue files found.");
+            $this->info('No rescue files found.');
+
             return self::SUCCESS;
         }
 
-        $this->info("Found " . count($files) . " rescue files. Starting recovery...");
+        $this->info('Found '.count($files).' rescue files. Starting recovery...');
 
         $totalRestored = 0;
 
@@ -31,7 +33,8 @@ class AuditRecoverCommand extends Command
                 $json = json_decode($content, true);
 
                 if (empty($json['data'])) {
-                    $this->warn("Skipping empty/invalid file: " . basename($file));
+                    $this->warn('Skipping empty/invalid file: '.basename($file));
+
                     continue;
                 }
 
@@ -42,15 +45,16 @@ class AuditRecoverCommand extends Command
 
                 unlink($file);
 
-                $this->info("Restored {$count} logs from " . basename($file));
+                $this->info("Restored {$count} logs from ".basename($file));
                 $totalRestored += $count;
 
             } catch (Throwable $e) {
-                $this->error("Failed to restore " . basename($file) . ": " . $e->getMessage());
+                $this->error('Failed to restore '.basename($file).': '.$e->getMessage());
             }
         }
 
         $this->info("Recovery complete. Total restored: {$totalRestored}");
+
         return self::SUCCESS;
     }
 }

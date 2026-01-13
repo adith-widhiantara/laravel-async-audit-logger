@@ -22,7 +22,7 @@ return [
     */
     'redis' => [
         'connection' => env('AUDIT_REDIS_CONNECTION', 'default'),
-        'queue_key'  => env('AUDIT_REDIS_KEY', 'audit_pkg:buffer'),
+        'queue_key' => env('AUDIT_REDIS_KEY', 'audit_pkg:buffer'),
     ],
 
     /*
@@ -31,10 +31,10 @@ return [
     |--------------------------------------------------------------------------
     */
     'worker' => [
-        'batch_size'     => (int) env('AUDIT_BATCH_SIZE', 100),
+        'batch_size' => (int) env('AUDIT_BATCH_SIZE', 100),
         'flush_interval' => (int) env('AUDIT_FLUSH_INTERVAL', 5), // seconds
-        'sleep_ms'       => (int) env('AUDIT_SLEEP_MS', 500),
-        'memory_limit'   => (int) env('AUDIT_MEMORY_LIMIT', 128), // MB
+        'sleep_ms' => (int) env('AUDIT_SLEEP_MS', 500),
+        'memory_limit' => (int) env('AUDIT_MEMORY_LIMIT', 128), // MB
     ],
 
     /*

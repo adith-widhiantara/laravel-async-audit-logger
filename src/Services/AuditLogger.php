@@ -2,9 +2,9 @@
 
 namespace Adithwidhiantara\Audit\Services;
 
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 use Throwable;
 
 class AuditLogger
@@ -22,7 +22,7 @@ class AuditLogger
         try {
             // Ambil konfigurasi
             $connection = Config::get('audit.redis.connection', 'default');
-            $key        = Config::get('audit.redis.queue_key', 'audit_pkg:buffer');
+            $key = Config::get('audit.redis.queue_key', 'audit_pkg:buffer');
 
             // Encode ke JSON (flags untuk memastikan float/array aman)
             $payload = json_encode($data, JSON_THROW_ON_ERROR);
@@ -34,7 +34,7 @@ class AuditLogger
         } catch (Throwable $e) {
             // Fail-safe: Jangan biarkan logging error mematikan aplikasi utama user
             // Kita catat saja di log file Laravel
-            Log::error("AuditLogger Error: Failed to push to Redis. " . $e->getMessage());
+            Log::error('AuditLogger Error: Failed to push to Redis. '.$e->getMessage());
         }
     }
 }

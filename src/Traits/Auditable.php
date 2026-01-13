@@ -8,7 +8,6 @@ use Adithwidhiantara\Audit\Services\AuditLogger;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
 trait Auditable
@@ -31,7 +30,7 @@ trait Auditable
 
             unset($new['updated_at'], $old['updated_at']);
 
-            if (!empty($new)) {
+            if (! empty($new)) {
                 self::audit('updated', $model, $old, $new);
             }
         });

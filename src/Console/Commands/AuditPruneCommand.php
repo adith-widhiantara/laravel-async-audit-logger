@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class AuditPruneCommand extends Command
 {
     protected $signature = 'audit:prune {--days= : The number of days to retain audit data}';
+
     protected $description = 'Prune audit records older than a specified number of days';
 
     public function handle(): int

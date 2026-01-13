@@ -12,12 +12,11 @@ final readonly class DataDto extends BaseDto
         public int|string|null $user_id,
         public string $url,
         public string $ip_address,
-        public string|null $user_agent,
+        public ?string $user_agent,
         public string|false $old_values,
         public string|false $new_values,
         public string $created_at,
-    )
-    {
+    ) {
         //
     }
 }
