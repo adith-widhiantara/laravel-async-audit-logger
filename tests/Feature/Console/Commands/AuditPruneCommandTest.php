@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Console\Commands;
+namespace Tests\Feature\Console\Commands;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
@@ -10,7 +10,7 @@ use Tests\TestCase;
 class AuditPruneCommandTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     public function test_it_prunes_audits_based_on_config()
     {
         Config::set('audit.prune_days', 30);

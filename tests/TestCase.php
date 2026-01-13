@@ -23,9 +23,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
+        $migration = include __DIR__ . '/../src/Database/Migrations/2026_01_13_064903_create_audits_table.php';
         $migration->up();
-        */
     }
 }
