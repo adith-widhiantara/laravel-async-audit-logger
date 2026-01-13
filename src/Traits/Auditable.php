@@ -2,7 +2,9 @@
 
 namespace Adithwidhiantara\Audit\Traits;
 
+use Adithwidhiantara\Audit\Dtos\DataDto;
 use Adithwidhiantara\Audit\Services\AuditLogger;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -12,12 +14,12 @@ trait Auditable
     public static function bootAuditable(): void
     {
         // 1. CREATE
-        static::created(function ($model) {
+        static::created(function (Model $model) {
             self::audit('created', $model, [], $model->toArray());
         });
 
         // 2. UPDATE
-        static::updated(function ($model) {
+        static::updated(function (Model $model) {
             $new = $model->getChanges();
 
             $old = [];
@@ -33,27 +35,27 @@ trait Auditable
         });
 
         // 3. DELETE
-        static::deleted(function ($model) {
+        static::deleted(function (Model $model) {
             self::audit('deleted', $model, $model->toArray(), []);
         });
     }
 
-    protected static function audit($event, $model, $old = [], $new = []): void
+    protected static function audit(string $event, Model $model, $old = [], $new = []): void
     {
-        $payload = [
-            'id'             => (string) Str::uuid(),
-            'event'          => $event,
-            'auditable_type' => get_class($model),
-            'auditable_id'   => $model->getKey(),
-            'user_id'        => Auth::id() ?? null,
-            'url'            => Request::fullUrl(),
-            'ip_address'     => Request::ip(),
-            'user_agent'     => Request::userAgent(),
-            'old_values'     => json_encode($old),
-            'new_values'     => json_encode($new),
-            'created_at'     => now()->toDateTimeString(),
-        ];
+        $data = (new DataDto(
+            id: (string) Str::uuid(),
+            event: $event,
+            auditable_type: get_class($model),
+            auditable_id: $model->getKey(),
+            user_id: Auth::id() ?? null,
+            url: Request::fullUrl(),
+            ip_address: Request::ip(),
+            user_agent: Request::userAgent(),
+            old_values: json_encode($old),
+            new_values: json_encode($new),
+            created_at: now()->toDateTimeString(),
+        ))->toArray();
 
-        AuditLogger::push($payload);
+        AuditLogger::push($data);
     }
 }
