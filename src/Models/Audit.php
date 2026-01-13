@@ -4,6 +4,7 @@ namespace Adithwidhiantara\Audit\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Audit extends Model
 {
@@ -23,6 +24,9 @@ class Audit extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        /** @var Authenticatable $userModel */
+        $userModel = config('auth.providers.users.model', User::class);
+
+        return $this->belongsTo($userModel);
     }
 }
