@@ -2,12 +2,15 @@
 
 namespace Tests\Feature\Console\Commands;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class AuditRecoverCommandTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function tearDown(): void
     {
         // Clean up any rescue files created

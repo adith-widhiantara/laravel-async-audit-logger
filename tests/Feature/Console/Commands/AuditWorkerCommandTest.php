@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Console\Commands;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
@@ -10,6 +11,8 @@ use Tests\TestCase;
 
 class AuditWorkerCommandTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
