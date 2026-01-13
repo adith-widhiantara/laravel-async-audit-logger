@@ -1,0 +1,9 @@
+services:
+  sonar-scanner:
+    image: sonarsource/sonar-scanner-cli
+    profiles: [ "local" ]
+    volumes:
+      - ./:/app
+    working_dir: /app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
