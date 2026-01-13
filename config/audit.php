@@ -42,5 +42,5 @@ return [
     | Data Retention (Days)
     |--------------------------------------------------------------------------
     */
-    'prune_days' => 90,
+    'prune_days' => (int) env('AUDIT_PRUNE_DAYS', 90),
 ];

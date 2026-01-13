@@ -7,7 +7,7 @@ namespace Adithwidhiantara\Audit\Console\Commands;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
-use Random\RandomException;
+use Illuminate\Support\Str;
 use Throwable;
 
 class AuditWorkerCommand extends \Illuminate\Console\Command
@@ -41,7 +41,13 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
                 $rawLog = Redis::connection($redisConn)->lpop($queueKey);
 
                 if ($rawLog) {
-                    $this->buffer[] = json_decode($rawLog, true);
+                    $decoded = json_decode($rawLog, true);
+
+                    if (is_array($decoded)) {
+                        $this->buffer[] = $decoded;
+                    } else {
+                        $this->warn("Skipping invalid JSON data: " . Str::limit($rawLog, 50));
+                    }
                 } else {
                     usleep($sleepMs * 1000);
                 }
