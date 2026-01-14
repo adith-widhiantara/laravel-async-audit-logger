@@ -30,7 +30,7 @@ trait Auditable
 
             unset($new['updated_at'], $old['updated_at']);
 
-            if (! empty($new)) {
+            if (!empty($new)) {
                 self::audit('updated', $model, $old, $new);
             }
         });
@@ -60,7 +60,7 @@ trait Auditable
         AuditLogger::push($data);
     }
 
-    public function audits(): MorphToMany
+    public function audits(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
         return $this
             ->morphMany(Audit::class, 'auditable')
