@@ -46,10 +46,53 @@ class AuditLoggerTest extends TestCase
 
         Log::shouldReceive('error')
             ->withArgs(function ($message) {
-                return str_contains($message, 'AuditLogger Error: Failed to push to Redis');
+                return str_contains($message, 'AuditLogger Redis Error:');
             })
             ->once();
 
         AuditLogger::push(['test' => 'data']);
+    }
+
+    public function test_audit_logger_inserts_to_db_when_driver_is_sync()
+    {
+        Config::set('audit.driver', 'sync');
+
+        // Mocking DB facade for insert is cleaner if we just check side effects on the real test DB
+        // The AuditLogger::push uses DB::table('audits')->insert($data)
+
+        $data = [
+            'id' => \Illuminate\Support\Str::uuid(),
+            'event' => 'created',
+            'auditable_type' => 'App\User',
+            'auditable_id' => 1,
+            'created_at' => now()->toDateTimeString(),
+            'new_values' => '[]',
+            'old_values' => '[]'
+        ];
+
+        Log::shouldReceive('error')->never();
+
+        AuditLogger::push($data);
+
+        $this->assertDatabaseHas('audits', ['id' => $data['id']]);
+    }
+
+    public function test_audit_logger_logs_error_when_sync_fails()
+    {
+        Config::set('audit.driver', 'sync');
+
+        // Force an error by passing invalid data that causes DB exception (e.g. missing required field or bad format)
+        // OR mock DB. Since we are in Integration/Unit test with Orchestra, we can try mocking DB facade 
+        // OR easier: use invalid data.
+
+        $data = ['invalid_column' => 'value'];
+
+        Log::shouldReceive('error')
+            ->withArgs(function ($message) {
+                return str_contains($message, 'AuditLogger Sync Error:');
+            })
+            ->once();
+
+        AuditLogger::push($data);
     }
 }
