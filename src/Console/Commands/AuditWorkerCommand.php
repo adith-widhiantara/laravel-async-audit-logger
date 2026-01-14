@@ -24,7 +24,7 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
 
     public function handle(): int
     {
-        $this->info('Starting Audit Worker (PID: ' . getmypid() . ')...');
+        $this->info('Starting Audit Worker (PID: '.getmypid().')...');
         $this->lastFlushTime = time();
 
         $this->trap([SIGTERM, SIGINT, SIGQUIT], function ($signal) {
@@ -42,7 +42,7 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
         $loops = 0;
         $maxLoops = (int) $this->option('max-loops');
 
-        while (!$this->shouldExit) {
+        while (! $this->shouldExit) {
             $loops++;
             if ($maxLoops > 0 && $loops > $maxLoops) {
                 break;
@@ -53,7 +53,7 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
                 $this->checkAndFlushBuffer($batchSize, $flushInt);
 
             } catch (Throwable $e) {
-                $this->error('Worker Error: ' . $e->getMessage());
+                $this->error('Worker Error: '.$e->getMessage());
                 sleep(1);
             }
         }
@@ -65,7 +65,7 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
     {
         $rawLog = Redis::connection($redisConn)->lpop($queueKey);
 
-        if (!$rawLog) {
+        if (! $rawLog) {
             usleep($sleepMs * 1000);
 
             return;
@@ -76,7 +76,7 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
         if (is_array($decoded)) {
             $this->buffer[] = $decoded;
         } else {
-            $this->warn('Skipping invalid JSON data: ' . Str::limit($rawLog, 50));
+            $this->warn('Skipping invalid JSON data: '.Str::limit($rawLog, 50));
         }
     }
 
@@ -86,7 +86,7 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
         $isBufferFull = count($this->buffer) >= $batchSize;
         $isTimeUp = (time() - $this->lastFlushTime) >= $flushInt;
 
-        if (!empty($this->buffer) && ($isBufferFull || $isTimeUp)) {
+        if (! empty($this->buffer) && ($isBufferFull || $isTimeUp)) {
             $this->flushBuffer();
         }
     }
@@ -101,11 +101,11 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
             // PLAN A: Insert ke Database
             DB::table('audits')->insert($this->buffer);
 
-            $this->info('Flushed ' . count($this->buffer) . ' logs to DB.');
+            $this->info('Flushed '.count($this->buffer).' logs to DB.');
 
         } catch (Throwable $e) {
             // PLAN B: Insert Gagal? Simpan ke File (Rescue)
-            $this->error('DB Failed! Rescuing to file... Error: ' . $e->getMessage());
+            $this->error('DB Failed! Rescuing to file... Error: '.$e->getMessage());
             $this->rescueToFile($e->getMessage());
         }
 

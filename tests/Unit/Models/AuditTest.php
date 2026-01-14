@@ -11,20 +11,20 @@ class AuditTest extends TestCase
 {
     public function test_audit_model_configuration()
     {
-        $audit = new Audit();
+        $audit = new Audit;
 
         $this->assertFalse($audit->timestamps);
         $this->assertEmpty($audit->getGuarded());
         $this->assertEquals([
             'old_values' => 'array',
             'new_values' => 'array',
-            'id' => 'int' // Laravel default
+            'id' => 'int', // Laravel default
         ], $audit->getCasts());
     }
 
     public function test_audit_auditable_relationship()
     {
-        $audit = new Audit();
+        $audit = new Audit;
         $relation = $audit->auditable();
 
         $this->assertInstanceOf(MorphTo::class, $relation);
@@ -34,7 +34,7 @@ class AuditTest extends TestCase
 
     public function test_audit_user_relationship()
     {
-        $audit = new Audit();
+        $audit = new Audit;
         $relation = $audit->user();
 
         $this->assertInstanceOf(BelongsTo::class, $relation);

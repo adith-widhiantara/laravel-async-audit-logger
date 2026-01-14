@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Console\Commands;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
@@ -47,8 +46,8 @@ class AuditRecoverCommandTest extends TestCase
                     'created_at' => now()->toDateTimeString(),
                     'new_values' => '[]',
                     'old_values' => '[]',
-                ]
-            ]
+                ],
+            ],
         ];
 
         file_put_contents(storage_path('logs/audit_rescue_test_1.json'), json_encode($data));
@@ -68,7 +67,7 @@ class AuditRecoverCommandTest extends TestCase
         $data = [
             'error' => 'Simulated error',
             'failed_at' => now()->toDateTimeString(),
-            'data' => []
+            'data' => [],
         ];
 
         file_put_contents(storage_path('logs/audit_rescue_empty.json'), json_encode($data));
@@ -80,7 +79,7 @@ class AuditRecoverCommandTest extends TestCase
             ->assertSuccessful();
 
         $this->assertDatabaseCount('audits', 0);
-        // File should still exist as code doesn't unlink if skipped (based on logic reading) or maybe it remains? 
+        // File should still exist as code doesn't unlink if skipped (based on logic reading) or maybe it remains?
         // Logic: if (empty($json['data'])) { warn... continue; } -> unlink is AFTER continue. So file remains.
         $this->assertTrue(file_exists(storage_path('logs/audit_rescue_empty.json')));
     }
@@ -91,8 +90,8 @@ class AuditRecoverCommandTest extends TestCase
             'error' => 'Simulated error',
             'failed_at' => now()->toDateTimeString(),
             'data' => [
-                ['invalid_column' => 'value'] // This will fail insert
-            ]
+                ['invalid_column' => 'value'], // This will fail insert
+            ],
         ];
 
         file_put_contents(storage_path('logs/audit_rescue_fail.json'), json_encode($data));

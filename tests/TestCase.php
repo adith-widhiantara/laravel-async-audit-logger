@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Adithwidhiantara\Audit\AuditingServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
@@ -23,7 +23,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        $migration = include __DIR__ . '/../src/Database/Migrations/2026_01_13_064903_create_audits_table.php';
+        $migration = include __DIR__.'/../src/Database/Migrations/2026_01_13_064903_create_audits_table.php';
         $migration->up();
     }
 }

@@ -40,7 +40,7 @@ class AuditWorkerCommandTest extends TestCase
             'auditable_id' => 1,
             'created_at' => now()->toDateTimeString(),
             'new_values' => '[]',
-            'old_values' => '[]'
+            'old_values' => '[]',
         ];
         $log2 = [
             'id' => \Illuminate\Support\Str::uuid(),
@@ -49,7 +49,7 @@ class AuditWorkerCommandTest extends TestCase
             'auditable_id' => 1,
             'created_at' => now()->toDateTimeString(),
             'new_values' => '[]',
-            'old_values' => '[]'
+            'old_values' => '[]',
         ];
 
         Redis::shouldReceive('connection')->with('default')->andReturnSelf();
@@ -65,7 +65,7 @@ class AuditWorkerCommandTest extends TestCase
             );
 
         $this->artisan('audit:work', ['--max-loops' => 3])
-            ->expectsOutput('Starting Audit Worker (PID: ' . getmypid() . ')...')
+            ->expectsOutput('Starting Audit Worker (PID: '.getmypid().')...')
             ->expectsOutput('Flushed 2 logs to DB.')
             ->assertSuccessful();
 
@@ -88,7 +88,7 @@ class AuditWorkerCommandTest extends TestCase
             'auditable_id' => 1,
             'created_at' => now()->toDateTimeString(),
             'new_values' => '[]',
-            'old_values' => '[]'
+            'old_values' => '[]',
         ]);
 
         $badLog = [
@@ -98,7 +98,7 @@ class AuditWorkerCommandTest extends TestCase
             'auditable_id' => 1,
             'created_at' => now()->toDateTimeString(),
             'new_values' => '[]',
-            'old_values' => '[]'
+            'old_values' => '[]',
         ];
 
         Redis::shouldReceive('connection')->with('default')->andReturnSelf();

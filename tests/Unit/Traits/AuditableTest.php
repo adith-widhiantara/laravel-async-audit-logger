@@ -79,7 +79,7 @@ class AuditableTest extends TestCase
                     && $data['auditable_type'] === TestModel::class
                     && json_decode($data['old_values'], true)['name'] === 'test'
                     && json_decode($data['new_values'], true)['name'] === 'updated'
-                    && !isset(json_decode($data['new_values'], true)['updated_at']);
+                    && ! isset(json_decode($data['new_values'], true)['updated_at']);
             });
 
         $model->update(['name' => 'updated']);
@@ -114,7 +114,7 @@ class AuditableTest extends TestCase
 
     public function test_audits_relationship()
     {
-        $model = new TestModel();
+        $model = new TestModel;
 
         $this->assertInstanceOf(\Illuminate\Database\Eloquent\Relations\MorphMany::class, $model->audits());
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1768357897">
-  <project timestamp="1768357897" name="Clover Coverage">
+<coverage generated="1768358023">
+  <project timestamp="1768358023" name="Clover Coverage">
     <package name="Adithwidhiantara\Audit">
       <file name="/var/www/html/packages/adithwidhiantara/laravel-async-audit-logger/src/AuditingServiceProvider.php">
         <class name="Adithwidhiantara\Audit\AuditingServiceProvider" namespace="Adithwidhiantara\Audit">
@@ -211,23 +211,24 @@
         <class name="Adithwidhiantara\Audit\Traits\Auditable" namespace="Adithwidhiantara\Audit\Traits">
           <metrics complexity="8" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="35" coveredelements="35"/>
         </class>
-        <line num="15" type="method" name="bootAuditable" visibility="public" complexity="3" crap="3" count="4"/>
-        <line num="18" type="stmt" count="4"/>
-        <line num="19" type="stmt" count="3"/>
-        <line num="20" type="stmt" count="4"/>
-        <line num="23" type="stmt" count="4"/>
-        <line num="24" type="stmt" count="1"/>
+        <line num="14" type="method" name="bootAuditable" visibility="public" complexity="3" crap="3" count="4"/>
+        <line num="17" type="stmt" count="4"/>
+        <line num="18" type="stmt" count="3"/>
+        <line num="19" type="stmt" count="4"/>
+        <line num="22" type="stmt" count="4"/>
+        <line num="23" type="stmt" count="1"/>
+        <line num="25" type="stmt" count="1"/>
         <line num="26" type="stmt" count="1"/>
         <line num="27" type="stmt" count="1"/>
-        <line num="28" type="stmt" count="1"/>
-        <line num="31" type="stmt" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
         <line num="33" type="stmt" count="1"/>
-        <line num="34" type="stmt" count="1"/>
-        <line num="36" type="stmt" count="4"/>
-        <line num="39" type="stmt" count="4"/>
-        <line num="40" type="stmt" count="1"/>
-        <line num="41" type="stmt" count="4"/>
-        <line num="44" type="method" name="audit" visibility="protected" complexity="4" crap="4" count="3"/>
+        <line num="35" type="stmt" count="4"/>
+        <line num="38" type="stmt" count="4"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="4"/>
+        <line num="43" type="method" name="audit" visibility="protected" complexity="4" crap="4" count="3"/>
+        <line num="45" type="stmt" count="3"/>
         <line num="46" type="stmt" count="3"/>
         <line num="47" type="stmt" count="3"/>
         <line num="48" type="stmt" count="3"/>
@@ -240,15 +241,14 @@
         <line num="55" type="stmt" count="3"/>
         <line num="56" type="stmt" count="3"/>
         <line num="57" type="stmt" count="3"/>
-        <line num="58" type="stmt" count="3"/>
-        <line num="60" type="stmt" count="3"/>
-        <line num="63" type="method" name="audits" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="59" type="stmt" count="3"/>
+        <line num="62" type="method" name="audits" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="64" type="stmt" count="1"/>
         <line num="65" type="stmt" count="1"/>
         <line num="66" type="stmt" count="1"/>
-        <line num="67" type="stmt" count="1"/>
-        <metrics loc="70" ncloc="67" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="35" coveredelements="35"/>
+        <metrics loc="69" ncloc="66" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="35" coveredelements="35"/>
       </file>
     </package>
-    <metrics files="10" loc="488" ncloc="457" classes="9" methods="17" coveredmethods="15" conditionals="0" coveredconditionals="0" statements="162" coveredstatements="154" elements="179" coveredelements="169"/>
+    <metrics files="10" loc="487" ncloc="456" classes="9" methods="17" coveredmethods="15" conditionals="0" coveredconditionals="0" statements="162" coveredstatements="154" elements="179" coveredelements="169"/>
   </project>
 </coverage>
