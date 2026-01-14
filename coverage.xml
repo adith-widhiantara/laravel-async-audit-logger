@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1768356370">
-  <project timestamp="1768356370" name="Clover Coverage">
+<coverage generated="1768356650">
+  <project timestamp="1768356650" name="Clover Coverage">
     <package name="Adithwidhiantara\Audit">
       <file name="/var/www/html/packages/adithwidhiantara/laravel-async-audit-logger/src/AuditingServiceProvider.php">
         <class name="Adithwidhiantara\Audit\AuditingServiceProvider" namespace="Adithwidhiantara\Audit">
           <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="15" coveredelements="15"/>
         </class>
-        <line num="14" type="method" name="register" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="16" type="stmt" count="2"/>
-        <line num="17" type="stmt" count="2"/>
-        <line num="18" type="stmt" count="2"/>
-        <line num="21" type="method" name="boot" visibility="public" complexity="2" crap="2" count="2"/>
-        <line num="23" type="stmt" count="2"/>
-        <line num="24" type="stmt" count="2"/>
-        <line num="25" type="stmt" count="2"/>
-        <line num="26" type="stmt" count="2"/>
-        <line num="27" type="stmt" count="2"/>
-        <line num="28" type="stmt" count="2"/>
-        <line num="30" type="stmt" count="2"/>
-        <line num="32" type="stmt" count="2"/>
-        <line num="33" type="stmt" count="2"/>
-        <line num="34" type="stmt" count="2"/>
+        <line num="14" type="method" name="register" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="16" type="stmt" count="5"/>
+        <line num="17" type="stmt" count="5"/>
+        <line num="18" type="stmt" count="5"/>
+        <line num="21" type="method" name="boot" visibility="public" complexity="2" crap="2" count="5"/>
+        <line num="23" type="stmt" count="5"/>
+        <line num="24" type="stmt" count="5"/>
+        <line num="25" type="stmt" count="5"/>
+        <line num="26" type="stmt" count="5"/>
+        <line num="27" type="stmt" count="5"/>
+        <line num="28" type="stmt" count="5"/>
+        <line num="30" type="stmt" count="5"/>
+        <line num="32" type="stmt" count="5"/>
+        <line num="33" type="stmt" count="5"/>
+        <line num="34" type="stmt" count="5"/>
         <metrics loc="38" ncloc="38" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="15" coveredelements="15"/>
       </file>
     </package>
@@ -134,23 +134,23 @@
       </file>
     </package>
     <file name="/var/www/html/packages/adithwidhiantara/laravel-async-audit-logger/src/Database/Migrations/2026_01_13_064903_create_audits_table.php">
-      <line num="7" type="stmt" count="2"/>
-      <line num="8" type="stmt" count="2"/>
-      <line num="14" type="stmt" count="2"/>
-      <line num="15" type="stmt" count="2"/>
-      <line num="16" type="stmt" count="2"/>
-      <line num="17" type="stmt" count="2"/>
-      <line num="18" type="stmt" count="2"/>
-      <line num="19" type="stmt" count="2"/>
-      <line num="20" type="stmt" count="2"/>
-      <line num="21" type="stmt" count="2"/>
-      <line num="22" type="stmt" count="2"/>
-      <line num="23" type="stmt" count="2"/>
-      <line num="24" type="stmt" count="2"/>
-      <line num="26" type="stmt" count="2"/>
-      <line num="27" type="stmt" count="2"/>
+      <line num="7" type="stmt" count="5"/>
+      <line num="8" type="stmt" count="5"/>
+      <line num="14" type="stmt" count="5"/>
+      <line num="15" type="stmt" count="5"/>
+      <line num="16" type="stmt" count="5"/>
+      <line num="17" type="stmt" count="5"/>
+      <line num="18" type="stmt" count="5"/>
+      <line num="19" type="stmt" count="5"/>
+      <line num="20" type="stmt" count="5"/>
+      <line num="21" type="stmt" count="5"/>
+      <line num="22" type="stmt" count="5"/>
+      <line num="23" type="stmt" count="5"/>
+      <line num="24" type="stmt" count="5"/>
+      <line num="26" type="stmt" count="5"/>
+      <line num="27" type="stmt" count="5"/>
       <line num="35" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="5"/>
       <metrics loc="38" ncloc="31" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="16" elements="17" coveredelements="16"/>
     </file>
     <package name="Adithwidhiantara\Audit\Dtos">
@@ -174,14 +174,14 @@
     <package name="Adithwidhiantara\Audit\Models">
       <file name="/var/www/html/packages/adithwidhiantara/laravel-async-audit-logger/src/Models/Audit.php">
         <class name="Adithwidhiantara\Audit\Models\Audit" namespace="Adithwidhiantara\Audit\Models">
-          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
         </class>
-        <line num="20" type="method" name="auditable" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="22" type="stmt" count="0"/>
-        <line num="25" type="method" name="user" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="28" type="stmt" count="0"/>
-        <line num="30" type="stmt" count="0"/>
-        <metrics loc="33" ncloc="32" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
+        <line num="20" type="method" name="auditable" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="22" type="stmt" count="1"/>
+        <line num="25" type="method" name="user" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <metrics loc="33" ncloc="32" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
       </file>
     </package>
     <package name="Adithwidhiantara\Audit\Services">
@@ -244,6 +244,6 @@
         <metrics loc="70" ncloc="67" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="0" elements="35" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="10" loc="477" ncloc="446" classes="9" methods="15" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="159" coveredstatements="29" elements="174" coveredelements="31"/>
+    <metrics files="10" loc="477" ncloc="446" classes="9" methods="15" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="159" coveredstatements="32" elements="174" coveredelements="36"/>
   </project>
 </coverage>
