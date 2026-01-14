@@ -49,27 +49,8 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
             }
 
             try {
-                $rawLog = Redis::connection($redisConn)->lpop($queueKey);
-
-                if ($rawLog) {
-                    $decoded = json_decode($rawLog, true);
-
-                    if (is_array($decoded)) {
-                        $this->buffer[] = $decoded;
-                    } else {
-                        $this->warn('Skipping invalid JSON data: ' . Str::limit($rawLog, 50));
-                    }
-                } else {
-                    usleep($sleepMs * 1000);
-                }
-
-                // Cek Trigger Flush
-                $isBufferFull = count($this->buffer) >= $batchSize;
-                $isTimeUp = (time() - $this->lastFlushTime) >= $flushInt;
-
-                if (!empty($this->buffer) && ($isBufferFull || $isTimeUp)) {
-                    $this->flushBuffer();
-                }
+                $this->processNextItem($redisConn, $queueKey, $sleepMs);
+                $this->checkAndFlushBuffer($batchSize, $flushInt);
 
             } catch (Throwable $e) {
                 $this->error('Worker Error: ' . $e->getMessage());
@@ -78,6 +59,36 @@ class AuditWorkerCommand extends \Illuminate\Console\Command
         }
 
         return self::SUCCESS;
+    }
+
+    private function processNextItem(string $redisConn, string $queueKey, int $sleepMs): void
+    {
+        $rawLog = Redis::connection($redisConn)->lpop($queueKey);
+
+        if (!$rawLog) {
+            usleep($sleepMs * 1000);
+
+            return;
+        }
+
+        $decoded = json_decode($rawLog, true);
+
+        if (is_array($decoded)) {
+            $this->buffer[] = $decoded;
+        } else {
+            $this->warn('Skipping invalid JSON data: ' . Str::limit($rawLog, 50));
+        }
+    }
+
+    private function checkAndFlushBuffer(int $batchSize, int $flushInt): void
+    {
+        // Cek Trigger Flush
+        $isBufferFull = count($this->buffer) >= $batchSize;
+        $isTimeUp = (time() - $this->lastFlushTime) >= $flushInt;
+
+        if (!empty($this->buffer) && ($isBufferFull || $isTimeUp)) {
+            $this->flushBuffer();
+        }
     }
 
     private function flushBuffer(): void
