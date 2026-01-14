@@ -6,7 +6,6 @@ use Adithwidhiantara\Audit\Dtos\DataDto;
 use Adithwidhiantara\Audit\Models\Audit;
 use Adithwidhiantara\Audit\Services\AuditLogger;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -60,7 +59,7 @@ trait Auditable
         AuditLogger::push($data);
     }
 
-    public function audits(): MorphToMany
+    public function audits(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
         return $this
             ->morphMany(Audit::class, 'auditable')

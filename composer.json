@@ -8,6 +8,11 @@
             "Adithwidhiantara\\Audit\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Adith Widhiantara",
@@ -23,5 +28,9 @@
                 "Adithwidhiantara\\Audit\\AuditingServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.5",
+        "orchestra/testbench": "^10.8"
     }
 }
